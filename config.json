@@ -1,0 +1,11 @@
+{
+    "method": "cli",
+    "cli_displayer": {
+      "lines":20,
+      "sung_color":"yellow",
+      "other_color":"white",
+      "width": 50,
+      "lines": 17,
+      "karaok":true
+    }
+}
