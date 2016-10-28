@@ -19,7 +19,7 @@ def new_lyric_object(song_path, type_="krc", try_all=False):
 
     for type_ in queue:
         path = songpath_to_lycpath(song_path, type_)
-        if os.path.exists(type_):
+        if os.path.exists(path):
             return type_to_class[type_](path)
     return None
 
@@ -140,7 +140,6 @@ class KugouLyric():
 
     def __parse(self, s):
         sentences = list()
-        print(s)
         for line in s.split("\r\n"):
             m = re.match(r"\s*\[(\d+),(\d+)\](.*)\s*", line)
             if m == None: continue

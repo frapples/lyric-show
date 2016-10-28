@@ -47,8 +47,12 @@ class Monitor:
             # 注意先通知播放器改变再通知歌曲改变再通知时间改变
             player = self._current_running_player()
             if (last_player != player):
-                self.player_close_signal.emit(last_player.name if last_player is not None else "")
-                self.player_open_signal.emit(player.name if last_player is not None else "")
+                if last_player is None:
+                    player_name =  ""
+                else:
+                    player_name = last_player.name
+                self.player_close_signal.emit(player_name)
+                self.player_open_signal.emit(player_name)
                 last_player = player
 
             if player is not None:
@@ -59,7 +63,7 @@ class Monitor:
 
                 time_ = player.get_current_ms()
                 if time_ != last_time:
-                    self.song_time_change_signal.emit(time_ + 0.6)
+                    self.song_time_change_signal.emit(time_ + 0.02)
                     last_time = time_
             yield
 

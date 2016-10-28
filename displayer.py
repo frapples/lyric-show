@@ -74,7 +74,8 @@ class LyricCliDisplayer():
             self.flush(ms)
 
         def player_open(player_name):
-            self.show_no_player()
+            if player_name == "":
+                self.show_no_player()
 
         def song_change(song_path):
             self._title = os.path.basename(song_path)
